@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="main-layout">
+<body onload="init()" class="main-layout">
 
     <!-- header -->
     <header class="main-header full">
@@ -24,10 +24,48 @@
             </nav>
         </div>
     </header>
+
     <!-- Gallery -->
-    <section class="gallery-container"></section>
+    <section class="gallery-container">
+
+        <div class="grid-container">
+
+        </div>
+
+
+
+    </section>
+
     <!-- Editor -->
-    <section class="editor-container"></section>
+    <section class="editor-container hidden ">
+        <div class="canvas-container">
+            <canvas id="my-canvas" width="450" height="450"></canvas>
+        </div>
+        <div class="options-container">
+            <label for="">
+                text:
+                <input onchange="onSetLineTxt(this.value)" type="text" name="text">
+            </label>
+            <div class="edit-btns">
+                <button>Move</button>
+                <button>Add</button>
+                <button>Delete</button>
+            </div>
+            <div class="options-btns">
+                <button>A+</button>
+                <button>A-</button>
+                <button>A+</button>
+                <button>A+</button>
+                <button>A+</button>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="meme-service.js"></script>
+    <script src="meme.controller.js"></script>
+    <script src="galleryController.js"></script>
 </body>
 
 </html>

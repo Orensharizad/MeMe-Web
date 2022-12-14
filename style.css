@@ -22,7 +22,6 @@ img {
     width: 100%;
 }
 
-
 .main-layout>*:not(.full) {
     max-width: 980px;
     margin-left: auto;
@@ -63,4 +62,45 @@ img {
     margin: 0;
     padding: 0;
     list-style-type: none;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1em;
+    margin: auto;
+    max-width: 700px;
+    padding-top: 100px;
+}
+
+.grid-container img {
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.editor-container {
+
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(113, 113, 113);
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    outline: 1px solid black;
+    background-color: white;
+}
+
+
+.options-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
 }
