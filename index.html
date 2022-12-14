@@ -17,7 +17,7 @@
             <div class="logo">MeMe</div>
             <nav class="main-nav ">
                 <ul class="clean-list">
-                    <li><a href="#">Gallery</a></li>
+                    <li><a href="index.html">Gallery</a></li>
                     <li><a href="#">Memes</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
@@ -46,13 +46,13 @@
         <div class="options-container">
             <label for="">
                 text:
-                <input oninput="onSetLineTxt(this.value)" type="text" name="text">
+                <input onkeyup="onSetLineTxt(this.value)" type="text" name="text">
             </label>
-            <input onchange="onSetColor(this.value)" type="color">
+            <input oninput="onSetColor(this.value)" type="color">
             <div class="options-btns">
                 <button onclick="onSetIncreaseFont()">Font+</button>
                 <button onclick="onSetDecreaseFont()">Font-</button>
-                <button onclick="onChangeLine()">Change Line</button>
+                <button onclick="onSwitchLine()">Switch Line</button>
 
             </div>
         </div>

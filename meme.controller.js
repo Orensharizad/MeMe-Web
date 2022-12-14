@@ -13,10 +13,9 @@ function init() {
 }
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-    // Note: changing the canvas dimension this way clears the canvas
     gElCanvas.width = elContainer.offsetWidth - 20
-    // Unless needed, better keep height fixed.
-    // gElCanvas.height = elContainer.offsetHeight
+    renderMeme()
+
 }
 function onSetLineTxt(val) {
     setLineTxt(val)
@@ -28,33 +27,57 @@ function onSetColor(val) {
 }
 function renderMeme() {
     renderMemeImg()
-    renderMemeText()
+    renderLine()
 }
-
 function renderMemeImg() {
     const imgURL = getCurrImgUrl()
     let img = new Image()
     img.src = imgURL
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
-
-function renderMemeText() {
+function renderLine() {
     const meme = getMeme()
-    const text = meme.lines[0].txt
-    const color = meme.lines[0].color
-    const size = meme.lines[0].size
-    gCtx.fillStyle = color;
-    gCtx.font = `${size}px Arial`;
-    gCtx.fillText(text, 150, 40);
-}
+    const lines = meme.lines
+    lines.forEach((line, idx) => {
 
+        if (!idx) {
+            gCtx.beginPath()
+            gCtx.font = `${line.size}px impact`
+            gCtx.fillStyle = line.color
+            gCtx.strokeStyle = 'black'
+            gCtx.lineWidth = 2
+            gCtx.textAlign = 'center'
+            gCtx.textBaseline = 'middle'
+            gCtx.fillText(line.txt, 200, 50)
+            gCtx.strokeText(line.txt, 200, 50)
+            gCtx.closePath()
+
+        }
+        if (idx === 1) {
+            gCtx.beginPath()
+            gCtx.font = `${line.size}px impact`
+            gCtx.fillStyle = line.color
+            gCtx.strokeStyle = 'black'
+            gCtx.lineWidth = 2
+            gCtx.textAlign = 'center'
+            gCtx.textBaseline = 'middle'
+            gCtx.fillText(line.txt, 200, 400)
+            gCtx.strokeText(line.txt, 200, 400)
+            gCtx.closePath()
+
+
+        }
+
+    })
+}
 function onSetIncreaseFont() {
     increaseFont()
     renderMeme()
 }
-
 function onSetDecreaseFont() {
     setDecreaseFont()
     renderMeme()
 }
-
+function onSwitchLine() {
+    switchLine()
+}
