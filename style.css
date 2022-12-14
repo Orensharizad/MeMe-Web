@@ -144,4 +144,8 @@ canvas {
         margin: 20px auto;
     }
 
+    .main-nav ul {
+        display: none;
+    }
+
 }
