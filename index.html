@@ -38,25 +38,22 @@
 
     <!-- Editor -->
     <section class="editor-container hidden ">
+        <!-- canvas -->
         <div class="canvas-container">
             <canvas id="my-canvas" width="450" height="450"></canvas>
         </div>
+        <!-- options -->
         <div class="options-container">
             <label for="">
                 text:
-                <input onchange="onSetLineTxt(this.value)" type="text" name="text">
+                <input oninput="onSetLineTxt(this.value)" type="text" name="text">
             </label>
-            <div class="edit-btns">
-                <button>Move</button>
-                <button>Add</button>
-                <button>Delete</button>
-            </div>
+            <input onchange="onSetColor(this.value)" type="color">
             <div class="options-btns">
-                <button>A+</button>
-                <button>A-</button>
-                <button>A+</button>
-                <button>A+</button>
-                <button>A+</button>
+                <button onclick="onSetIncreaseFont()">Font+</button>
+                <button onclick="onSetDecreaseFont()">Font-</button>
+                <button onclick="onChangeLine()">Change Line</button>
+
             </div>
         </div>
     </section>

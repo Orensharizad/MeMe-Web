@@ -17,7 +17,7 @@ let gMeme = {
     lines: [
         {
             txt: '',
-            size: 20,
+            size: 40,
             align: 'left',
             color: 'red'
         }
@@ -32,9 +32,18 @@ function getMeme() {
 function setLineTxt(val) {
     gMeme.lines[0].txt = val
 }
-function setImg(imgId) {
+function setImgId(imgId) {
     gMeme.selectedImgId = imgId
-    console.log(gMeme)
+}
+function setColor(val) {
+    gMeme.lines[0].color = val
+}
+function increaseFont() {
+    gMeme.lines[0].size++
+}
+
+function setDecreaseFont() {
+    gMeme.lines[0].size--
 }
 
 
