@@ -33,6 +33,7 @@ img {
 
 .main-header {
     background-color: rgb(195, 195, 195);
+    width: 100%;
     border-radius: 2em;
 }
 
@@ -56,7 +57,7 @@ img {
 .main-nav a {
     color: #ffffff;
     text-decoration: none;
-    min-width: 130px;
+    min-width: 100px;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -78,7 +79,7 @@ img {
     gap: 1em;
     margin: auto;
     max-width: 980px;
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 .grid-container img {
@@ -116,4 +117,31 @@ canvas {
 
 .hidden {
     display: none;
+}
+
+
+@media (max-width:500px) {
+    .main-layout>*:not(.full) {
+        max-width: 520px;
+    }
+
+    .editor-container {
+        flex-direction: column;
+    }
+
+    canvas {
+        width: 90vw;
+    }
+
+    .editor-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .options-container {
+        width: 90vw;
+        height: 40vh;
+        margin: 20px auto;
+    }
+
 }
