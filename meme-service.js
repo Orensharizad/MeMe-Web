@@ -24,14 +24,21 @@ let gMeme = {
             size: 60,
             align: 'center',
             color: 'white',
-            isFocus: true
+            isFocus: true,
+            isDrag: false,
+            x: 200,
+            y: 50
         },
         {
             txt: '',
             size: 60,
             align: 'center',
             color: 'white',
-            isFocus: false
+            isFocus: false,
+            isDrag: false,
+            x: 200,
+            y: 400
+
         }
     ]
 }
@@ -71,5 +78,47 @@ function switchLine() {
     } else {
         gMeme.selectedLineIdx = 0
     }
+
+}
+
+function isLineClicked(clickedPos) {
+    // const { pos } = gCircle
+    const lineIdx = gMeme.selectedLineIdx
+    const line = gMeme.lines[lineIdx]
+    line.x = clickedPos.x
+    line.y = clickedPos.y
+    const distance = Math.sqrt((line.x - clickedPos.x) ** 2 + (line.y - clickedPos.y) ** 2)
+    return distance <= line.size
+
+
+}
+
+function moveLine(pos) {
+    const lineIdx = gMeme.selectedLineIdx
+    const line = gMeme.lines[lineIdx]
+    line.x = pos.x
+    line.y = pos.y
+}
+
+function setLineDrag(isDrag) {
+    const lineIdx = gMeme.selectedLineIdx
+    const line = gMeme.lines[lineIdx]
+    line.isDrag = isDrag
+}
+
+function doUploadImg(imgDataUrl, onSuccess) {
+    // Pack the image for delivery
+    const formData = new FormData()
+    formData.append('img', imgDataUrl)
+    // Send a post req with the image to the server
+    fetch('//ca-upload.com/here/upload.php', { method: 'POST', body: formData })
+        .then(res => res.text())
+        .then(url => {
+            console.log('url:', url)
+            onSuccess(url)
+        })
+}
+
+function renderRandomMeme() {
 
 }

@@ -25,3 +25,10 @@ function getCurrImgUrl() {
     const currImg = imgs.find(img => img.id === meme.selectedImgId)
     return currImg.url
 }
+
+
+function onRenderRandomMeme() {
+    const randomImgId = getRandomInt(1, 10)
+    onImgSelect(randomImgId)
+}
+

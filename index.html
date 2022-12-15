@@ -14,10 +14,10 @@
     <!-- header -->
     <header class="main-header full">
         <div class="container">
-            <div class="logo">MeMe</div>
+            <div class="logo">logo</div>
             <nav class="main-nav ">
                 <ul class="clean-list">
-                    <li><a href="index.html">Gallery</a></li>
+                    <li><a class="active" href="index.html">Gallery</a></li>
                     <li><a href="#">Memes</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
@@ -28,7 +28,14 @@
     <!-- Gallery -->
     <section class="gallery-container">
 
+        <div class="filter-container">
+            <input class="search" placeholder="Search.." type="text" name="" id="">
+            <div class="words">Funny animal Men Women comic Smile</div>
+            <button onclick="onRenderRandomMeme()" class="btn-more">imFlexible</button>
+        </div>
+
         <div class="grid-container">
+
 
         </div>
 
@@ -36,8 +43,10 @@
 
     </section>
 
+
     <!-- Editor -->
     <section class="editor-container hidden ">
+
         <!-- canvas -->
         <div class="canvas-container">
             <canvas id="my-canvas" width="450" height="450"></canvas>
@@ -47,12 +56,18 @@
             <label for="">
                 text:
                 <input onkeyup="onSetLineTxt(this.value)" type="text" name="text">
+                <input oninput="onSetColor(this.value)" type="color">
             </label>
-            <input oninput="onSetColor(this.value)" type="color">
             <div class="options-btns">
                 <button onclick="onSetIncreaseFont()">Font+</button>
                 <button onclick="onSetDecreaseFont()">Font-</button>
                 <button onclick="onSwitchLine()">Switch Line</button>
+                <button onclick="onSaveMeme()">Save MeMe</button>
+                <div class="share-meme">
+                    <a href="#" onclick="downloadCanvas(this)" download="my-img">Download</a>
+                    <button class="btn" onclick="onUploadImg()"> Share</button>
+
+                </div>
 
             </div>
         </div>
@@ -63,6 +78,7 @@
     <script src="meme-service.js"></script>
     <script src="meme.controller.js"></script>
     <script src="galleryController.js"></script>
+    <script src="utils.js"></script>
 </body>
 
 </html>
