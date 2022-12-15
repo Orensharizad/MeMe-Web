@@ -56,7 +56,6 @@ function renderLine() {
             gCtx.fillText(line.txt, line.x, line.y)
             gCtx.strokeText(line.txt, line.x, line.y)
             gCtx.closePath()
-
         }
         if (idx === 1) {
             gCtx.beginPath()
@@ -69,10 +68,7 @@ function renderLine() {
             gCtx.fillText(line.txt, line.x, line.y)
             gCtx.strokeText(line.txt, line.x, line.y)
             gCtx.closePath()
-
-
         }
-
     })
 }
 function onSetIncreaseFont() {
@@ -165,7 +161,6 @@ function onImgInput(ev) {
     loadImageFromInput(ev, renderImg)
 }
 
-// CallBack func will run on success load of the img
 function loadImageFromInput(ev, onImageReady) {
     const reader = new FileReader()
     // After we read the file
@@ -188,4 +183,42 @@ function renderImg(img) {
 function onClearText() {
     clearText()
     renderMeme()
+}
+
+function onAddLine() {
+    onSwitchLine()
+}
+
+function onSaveMeme() {
+    const memeURL = gElCanvas.toDataURL()
+    saveMeme(memeURL)
+}
+function onMoveGalleryPage() {
+    document.querySelector('.gallery-container').classList.remove('hidden')
+    document.querySelector('.editor-container').classList.add('hidden')
+}
+
+
+function onRenderSavedMeme() {
+    document.querySelector('.gallery-container').classList.add('hidden')
+    document.querySelector('.editor-container').classList.add('hidden')
+    const imgs = getUserSavedMeme()
+    console.log(imgs)
+    const strHTMLs = imgs.map(img => `
+    <div class="item"><img onclick="onMemeSelect('${img.id}')" src=${img.url} alt=""></div>
+    `)
+
+    const elGrid = document.querySelector('.saved-gallery-grid')
+    elGrid.innerHTML = strHTMLs.join('')
+
+
+}
+
+function onMemeSelect(memeId) {
+    document.querySelector('.editor-container').classList.remove('hidden')
+    document.querySelector('.gallery-container').classList.add('hidden')
+    document.querySelector('.saved-gallery-grid').classList.add('hidden')
+    getMemeFromSaved(memeId)
+    renderMeme()
+
 }

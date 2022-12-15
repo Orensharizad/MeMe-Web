@@ -1,5 +1,7 @@
 'use strict'
+const gMemeWords = [
 
+]
 
 function renderGallery() {
     const imgs = getImgs()
@@ -22,6 +24,7 @@ function onImgSelect(imgId) {
 function getCurrImgUrl() {
     const imgs = getImgs()
     const meme = getMeme()
+    console.log('meme', meme)
     const currImg = imgs.find(img => img.id === meme.selectedImgId)
     return currImg.url
 }

@@ -17,9 +17,8 @@
             <div class="logo">logo</div>
             <nav class="main-nav ">
                 <ul class="clean-list">
-                    <li><a class="active" href="index.html">Gallery</a></li>
-                    <li><a href="#">Memes</a></li>
-                    <li><a href="#">About</a></li>
+                    <li onclick="onMoveGalleryPage()"><a class="active" href="index.html">Gallery</a></li>
+                    <li onclick="onRenderSavedMeme()"><a href="#">Memes</a></li>
                 </ul>
             </nav>
         </div>
@@ -42,6 +41,11 @@
 
 
     </section>
+    <!-- saved-meme-container -->
+    <section class="saved-meme-container">
+        <div class="saved-gallery-grid">
+        </div>
+    </section>
 
 
     <!-- Editor -->
@@ -56,28 +60,29 @@
 
             <input class="text-input" onkeyup="onSetLineTxt(this.value)" type="text" name="text">
             <div class="editor-btns">
-                <button onclick="onSwitchLine()">⇅</button>
-                <button>add</button>
-                <button onclick="onClearText()">Delete</button>
+                <button class="btn-switch" onclick="onSwitchLine()">⇅</button>
+                <button class="btn-add" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
+                <button class="btn-clear" onclick="onClearText()"><i class="fa-solid fa-trash"></i></button>
             </div>
 
-            <div class="text-editor-btn">
-                <button onclick="onSetIncreaseFont()">A+</button>
-                <button onclick="onSetDecreaseFont()">A-</button>
-                <button>left</button>
-                <button>center</button>
-                <button>right</button>
+            <div class="text-editor-btns">
+                <button class="btn-increase-font item" onclick="onSetIncreaseFont()">A+</button>
+                <button class="btn-decrease-font item" onclick="onSetDecreaseFont()">A-</button>
+                <button class="item">left</button>
+                <button class="item">center</button>
+                <button class="item">right</button>
+                <button class="impact-item item">impact</button>
+                <button class="item" onclick="onSaveMeme()">S</button>
+                <input class="item" oninput="onSetColor(this.value)" type="color">
+
             </div>
-            <input oninput="onSetColor(this.value)" type="color">
-            <button onclick="onSaveMeme()">Save MeMe</button>
-            <label class="custom-file-upload">
-                <input type="file" />
-                Upload Img
-                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-            </label>
+            <!-- <label class="custom-file-upload"> -->
+            <!-- Upload Img -->
+            <!-- <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" /> -->
+            <!-- </label> -->
             <div class="share-meme">
-                <a onclick="onUploadImg()"> Share</a>
-                <a href="#" onclick="downloadCanvas(this)" download="my-img">Download</a>
+                <a class="share-btn" onclick="onUploadImg()">Share</a>
+                <a class="download-btn" href="#" onclick="downloadCanvas(this)" download="my-img">Download</a>
             </div>
 
         </div>
@@ -86,10 +91,13 @@
 
 
 
+    <script src="utils.js"></script>
+    <script src="storage.js"></script>
     <script src="meme-service.js"></script>
     <script src="meme.controller.js"></script>
     <script src="galleryController.js"></script>
-    <script src="utils.js"></script>
+    <script src="https://kit.fontawesome.com/55fc36cb30.js" crossorigin="anonymous"></script>
+
 
 </body>
 

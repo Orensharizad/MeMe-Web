@@ -108,6 +108,7 @@ img {
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
+    font-size: 1em;
 
 }
 
@@ -166,6 +167,17 @@ img {
     border: 1px solid rgb(255, 255, 255);
 }
 
+.saved-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1em;
+}
+
+.saved-gallery-grid img {
+    border-radius: 1em;
+    cursor: pointer;
+}
+
 .editor-container {
 
     display: flex;
@@ -196,11 +208,59 @@ canvas {
     background-color: #383b42;
 }
 
+
+
 .options-btns {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+
+
+.editor-btns button {
+    font-size: 2em;
+    cursor: pointer;
+    border-radius: 0.4em;
+    font-weight: bold;
+    padding: 0.4em;
+    border: none;
+    color: white;
+    height: 2em;
+
+}
+
+.btn-switch {
+
+    background-color: #4db7d3;
+}
+
+.btn-add {
+    background-color: #3fdb57;
+    margin: 0 0.5em;
+
+}
+
+.btn-clear {
+    background-color: #d52637;
+}
+
+.text-editor-btns {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: #19a59f;
+    padding: 2em;
+    border-radius: 1em;
+
+}
+
+.impact-item {
+    grid-column: 1 /4;
+}
+
+.item {
+    margin: 0.4em;
 }
 
 .text-input {
@@ -212,18 +272,27 @@ canvas {
 
 .share-meme {
     margin-top: 10px;
-}
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
 
+}
 
 
 .share-meme a {
     color: #ffffff;
     text-decoration: none;
     border: 1px solid black;
-    padding: 5px;
-    background-color: #1a1a1b;
+    border-radius: 1em;
+    padding: 10px;
+    background-color: #19a59f;
     cursor: pointer;
 }
+
+
+
+
+
 
 
 .custom-file-upload {
