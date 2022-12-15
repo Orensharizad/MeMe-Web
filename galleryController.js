@@ -28,7 +28,10 @@ function getCurrImgUrl() {
 
 
 function onRenderRandomMeme() {
-    const randomImgId = getRandomInt(1, 10)
+    const randomImgId = getRandomInt(1, 18)
     onImgSelect(randomImgId)
+    const { selectedLineIdx, lines } = getMeme()
+    lines[selectedLineIdx].txt = 'hello World'
+    renderMeme()
 }
 

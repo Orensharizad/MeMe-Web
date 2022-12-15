@@ -4,6 +4,8 @@ let gCtx
 let gStartPos
 
 
+
+
 function init() {
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
@@ -12,6 +14,7 @@ function init() {
     window.addEventListener('resize', () => {
         resizeCanvas()
     })
+
 }
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
@@ -83,25 +86,21 @@ function onSetDecreaseFont() {
 function onSwitchLine() {
     switchLine()
 }
-
 function addListeners() {
     addMouseListeners()
     addTouchListeners()
 
 }
-
 function addMouseListeners() {
     gElCanvas.addEventListener('mousemove', onMove)
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mouseup', onUp)
 }
-
 function addTouchListeners() {
     gElCanvas.addEventListener('touchmove', onMove)
     gElCanvas.addEventListener('touchstart', onDown)
     gElCanvas.addEventListener('touchend', onUp)
 }
-
 function onDown(ev) {
     const pos = getEvPos(ev)
     if (!isLineClicked(pos)) return
@@ -109,7 +108,6 @@ function onDown(ev) {
     gStartPos = pos
     document.body.style.cursor = 'grabbing'
 }
-
 function onMove(ev) {
     const meme = getMeme()
     const { selectedLineIdx, lines } = meme
@@ -120,13 +118,11 @@ function onMove(ev) {
     renderMeme()
 
 }
-
 function onUp() {
     setLineDrag(false)
     document.body.style.cursor = 'default'
 
 }
-
 function getEvPos(ev) {
     // Gets the offset pos , the default pos
     let pos = {
@@ -149,12 +145,10 @@ function getEvPos(ev) {
     return pos
 }
 
-
 function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL()
     elLink.href = data
 }
-
 function onUploadImg() {
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg') // Gets the canvas content as an image format
     // A function to be called if request succeeds
@@ -167,3 +161,31 @@ function onUploadImg() {
     doUploadImg(imgDataUrl, onSuccess)
 }
 
+function onImgInput(ev) {
+    loadImageFromInput(ev, renderImg)
+}
+
+// CallBack func will run on success load of the img
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+    // After we read the file
+    reader.onload = (event) => {
+        let img = new Image() // Create a new html img element
+        img.src = event.target.result // Set the img src to the img file we read
+        // Run the callBack func, To render the img on the canvas
+        img.onload = () => onImageReady(img)
+    }
+
+    reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
+
+}
+
+function renderImg(img) {
+    // Draw the img on the canvas
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+}
+
+function onClearText() {
+    clearText()
+    renderMeme()
+}

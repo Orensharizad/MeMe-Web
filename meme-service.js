@@ -14,6 +14,14 @@ let gImgs = [
     { id: 8, url: 'imgs/8.jpg', keywords: ['funny', 'cat'] },
     { id: 9, url: 'imgs/9.jpg', keywords: ['funny', 'cat'] },
     { id: 10, url: 'imgs/10.jpg', keywords: ['funny', 'cat'] },
+    { id: 11, url: 'imgs/11.jpg', keywords: ['funny', 'cat'] },
+    { id: 12, url: 'imgs/12.jpg', keywords: ['funny', 'cat'] },
+    { id: 13, url: 'imgs/13.jpg', keywords: ['funny', 'cat'] },
+    { id: 14, url: 'imgs/14.jpg', keywords: ['funny', 'cat'] },
+    { id: 15, url: 'imgs/15.jpg', keywords: ['funny', 'cat'] },
+    { id: 16, url: 'imgs/16.jpg', keywords: ['funny', 'cat'] },
+    { id: 17, url: 'imgs/17.jpg', keywords: ['funny', 'cat'] },
+    { id: 18, url: 'imgs/18.jpg', keywords: ['funny', 'cat'] },
 ]
 let gMeme = {
     selectedImgId: 5,
@@ -51,7 +59,6 @@ function getMeme() {
 function setLineTxt(val) {
     let selectedLine = gMeme.selectedLineIdx
     gMeme.lines[selectedLine].txt = val
-
 }
 function setImgId(imgId) {
     gMeme.selectedImgId = imgId
@@ -82,15 +89,10 @@ function switchLine() {
 }
 
 function isLineClicked(clickedPos) {
-    // const { pos } = gCircle
     const lineIdx = gMeme.selectedLineIdx
     const line = gMeme.lines[lineIdx]
-    line.x = clickedPos.x
-    line.y = clickedPos.y
     const distance = Math.sqrt((line.x - clickedPos.x) ** 2 + (line.y - clickedPos.y) ** 2)
     return distance <= line.size
-
-
 }
 
 function moveLine(pos) {
@@ -121,4 +123,10 @@ function doUploadImg(imgDataUrl, onSuccess) {
 
 function renderRandomMeme() {
 
+}
+
+
+function clearText() {
+    const lines = gMeme.lines
+    lines.forEach(line => line.txt = '')
 }

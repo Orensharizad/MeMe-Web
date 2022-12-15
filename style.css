@@ -102,6 +102,8 @@ img {
     height: 100%;
 }
 
+
+
 .filter-container {
     margin-bottom: 20px;
     display: flex;
@@ -140,7 +142,6 @@ img {
     cursor: pointer;
     margin: 0 5px;
 }
-
 
 
 .grid-container {
@@ -190,15 +191,74 @@ canvas {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
     border-radius: 1em;
     background-color: #383b42;
 }
 
+.options-btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-input {
+    width: 80%;
+    height: 3em;
+    border-radius: 2em;
+
+}
+
+.share-meme {
+    margin-top: 10px;
+}
+
+
+
+.share-meme a {
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #1a1a1b;
+    cursor: pointer;
+}
+
+
+.custom-file-upload {
+    border: 1px solid black;
+    color: white;
+    background-color: #1a1a1b;
+    padding: 5px;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
 
 
 .hidden {
     display: none;
 }
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    border: 1px solid rgb(0, 0, 0);
+    background-color: #1a1a1b;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, rgba(19, 159, 172, 1) 34%, rgba(72, 210, 146, 1) 100%);
+    border-radius: 2em;
+}
+
+
 
 
 @media (max-width:500px) {

@@ -53,23 +53,34 @@
         </div>
         <!-- options -->
         <div class="options-container">
-            <label for="">
-                text:
-                <input onkeyup="onSetLineTxt(this.value)" type="text" name="text">
-                <input oninput="onSetColor(this.value)" type="color">
-            </label>
-            <div class="options-btns">
-                <button onclick="onSetIncreaseFont()">Font+</button>
-                <button onclick="onSetDecreaseFont()">Font-</button>
-                <button onclick="onSwitchLine()">Switch Line</button>
-                <button onclick="onSaveMeme()">Save MeMe</button>
-                <div class="share-meme">
-                    <a href="#" onclick="downloadCanvas(this)" download="my-img">Download</a>
-                    <button class="btn" onclick="onUploadImg()"> Share</button>
 
-                </div>
-
+            <input class="text-input" onkeyup="onSetLineTxt(this.value)" type="text" name="text">
+            <div class="editor-btns">
+                <button onclick="onSwitchLine()">⇅</button>
+                <button>add</button>
+                <button onclick="onClearText()">Delete</button>
             </div>
+
+            <div class="text-editor-btn">
+                <button onclick="onSetIncreaseFont()">A+</button>
+                <button onclick="onSetDecreaseFont()">A-</button>
+                <button>left</button>
+                <button>center</button>
+                <button>right</button>
+            </div>
+            <input oninput="onSetColor(this.value)" type="color">
+            <button onclick="onSaveMeme()">Save MeMe</button>
+            <label class="custom-file-upload">
+                <input type="file" />
+                Upload Img
+                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+            </label>
+            <div class="share-meme">
+                <a onclick="onUploadImg()"> Share</a>
+                <a href="#" onclick="downloadCanvas(this)" download="my-img">Download</a>
+            </div>
+
+        </div>
         </div>
     </section>
 
@@ -79,6 +90,7 @@
     <script src="meme.controller.js"></script>
     <script src="galleryController.js"></script>
     <script src="utils.js"></script>
+
 </body>
 
 </html>
