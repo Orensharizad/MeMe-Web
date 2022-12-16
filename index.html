@@ -23,7 +23,6 @@
             </nav>
         </div>
     </header>
-
     <!-- Gallery -->
     <section class="gallery-container">
 
@@ -46,8 +45,6 @@
         <div class="saved-gallery-grid">
         </div>
     </section>
-
-
     <!-- Editor -->
     <section class="editor-container hidden ">
 
@@ -58,7 +55,7 @@
         <!-- options -->
         <div class="options-container">
 
-            <input class="text-input" onkeyup="onSetLineTxt(this.value)" type="text" name="text">
+            <input class="text-input" oninput="onSetLineTxt(this.value)" type="text" name="text">
             <div class="editor-btns">
                 <button class="btn-switch" onclick="onSwitchLine()">⇅</button>
                 <button class="btn-add" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>

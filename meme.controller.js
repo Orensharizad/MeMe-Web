@@ -5,14 +5,15 @@ let gStartPos
 
 
 
-
 function init() {
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
+    // resizeCanvas()
     addListeners()
     window.addEventListener('resize', () => {
         resizeCanvas()
+        renderMeme()
     })
 
 }
@@ -32,43 +33,75 @@ function onSetColor(val) {
 }
 function renderMeme() {
     renderMemeImg()
-    renderLine()
 }
 function renderMemeImg() {
     const imgURL = getCurrImgUrl()
     let img = new Image()
     img.src = imgURL
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    renderLine()
+
 }
+// function renderLine() {
+//     const meme = getMeme()
+//     const lines = meme.lines
+//     lines.forEach((line, idx) => {
+
+//         if (!idx) {
+//             gCtx.beginPath()
+//             gCtx.font = `${line.size}px impact`
+//             gCtx.fillStyle = line.color
+//             gCtx.strokeStyle = 'black'
+//             gCtx.lineWidth = 2
+//             gCtx.textAlign = 'center'
+//             gCtx.textBaseline = 'middle'
+//             gCtx.fillText(line.txt, line.x, line.y)
+//             gCtx.strokeText(line.txt, line.x, line.y)
+//             gCtx.closePath()
+//         }
+//         if (idx === 1) {
+//             gCtx.beginPath()
+//             gCtx.font = `${line.size}px impact`
+//             gCtx.fillStyle = line.color
+//             gCtx.strokeStyle = 'black'
+//             gCtx.lineWidth = 2
+//             gCtx.textAlign = 'center'
+//             gCtx.textBaseline = 'middle'
+//             gCtx.fillText(line.txt, line.x, line.y)
+//             gCtx.strokeText(line.txt, line.x, line.y)
+//             gCtx.closePath()
+//         }
+//         else {
+//             gCtx.beginPath()
+//             gCtx.font = `${line.size}px impact`
+//             gCtx.fillStyle = line.color
+//             gCtx.strokeStyle = 'black'
+//             gCtx.lineWidth = 2
+//             gCtx.textAlign = 'center'
+//             gCtx.textBaseline = 'middle'
+//             gCtx.fillText(line.txt, line.x, line.y)
+//             gCtx.strokeText(line.txt, line.x, line.y)
+//             gCtx.closePath()
+//         }
+//     })
+// }
 function renderLine() {
     const meme = getMeme()
     const lines = meme.lines
     lines.forEach((line, idx) => {
-
-        if (!idx) {
-            gCtx.beginPath()
-            gCtx.font = `${line.size}px impact`
-            gCtx.fillStyle = line.color
-            gCtx.strokeStyle = 'black'
-            gCtx.lineWidth = 2
-            gCtx.textAlign = 'center'
-            gCtx.textBaseline = 'middle'
-            gCtx.fillText(line.txt, line.x, line.y)
-            gCtx.strokeText(line.txt, line.x, line.y)
-            gCtx.closePath()
+        gCtx.beginPath()
+        gCtx.font = `${line.size}px impact`
+        gCtx.fillStyle = line.color
+        gCtx.strokeStyle = 'black'
+        gCtx.lineWidth = 2
+        gCtx.textAlign = 'center'
+        gCtx.textBaseline = 'middle'
+        gCtx.fillText(line.txt, line.x, line.y)
+        gCtx.strokeText(line.txt, line.x, line.y)
+        if (idx === meme.selectedLineIdx) {
+            gCtx.strokeRect(line.x - 200, line.y - 40, 450, 80);
         }
-        if (idx === 1) {
-            gCtx.beginPath()
-            gCtx.font = `${line.size}px impact`
-            gCtx.fillStyle = line.color
-            gCtx.strokeStyle = 'black'
-            gCtx.lineWidth = 2
-            gCtx.textAlign = 'center'
-            gCtx.textBaseline = 'middle'
-            gCtx.fillText(line.txt, line.x, line.y)
-            gCtx.strokeText(line.txt, line.x, line.y)
-            gCtx.closePath()
-        }
+        gCtx.closePath()
     })
 }
 function onSetIncreaseFont() {
@@ -81,6 +114,7 @@ function onSetDecreaseFont() {
 }
 function onSwitchLine() {
     switchLine()
+    renderMeme()
 }
 function addListeners() {
     addMouseListeners()
@@ -101,7 +135,8 @@ function onDown(ev) {
     const pos = getEvPos(ev)
     if (!isLineClicked(pos)) return
     setLineDrag(true)
-    gStartPos = pos
+    setLineFoucs(true)
+    // gStartPos = pos
     document.body.style.cursor = 'grabbing'
 }
 function onMove(ev) {
@@ -112,10 +147,10 @@ function onMove(ev) {
     const pos = getEvPos(ev)
     moveLine(pos)
     renderMeme()
-
 }
 function onUp() {
     setLineDrag(false)
+    setLineFoucs(false)
     document.body.style.cursor = 'default'
 
 }
@@ -140,7 +175,6 @@ function getEvPos(ev) {
     // }
     return pos
 }
-
 function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL()
     elLink.href = data
@@ -156,11 +190,9 @@ function onUploadImg() {
     // Send the image to the server
     doUploadImg(imgDataUrl, onSuccess)
 }
-
 function onImgInput(ev) {
     loadImageFromInput(ev, renderImg)
 }
-
 function loadImageFromInput(ev, onImageReady) {
     const reader = new FileReader()
     // After we read the file
@@ -174,51 +206,19 @@ function loadImageFromInput(ev, onImageReady) {
     reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
 
 }
-
 function renderImg(img) {
     // Draw the img on the canvas
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
-
 function onClearText() {
     clearText()
     renderMeme()
 }
-
 function onAddLine() {
-    onSwitchLine()
+    addLine()
+    renderMeme()
 }
-
 function onSaveMeme() {
     const memeURL = gElCanvas.toDataURL()
     saveMeme(memeURL)
-}
-function onMoveGalleryPage() {
-    document.querySelector('.gallery-container').classList.remove('hidden')
-    document.querySelector('.editor-container').classList.add('hidden')
-}
-
-
-function onRenderSavedMeme() {
-    document.querySelector('.gallery-container').classList.add('hidden')
-    document.querySelector('.editor-container').classList.add('hidden')
-    const imgs = getUserSavedMeme()
-    console.log(imgs)
-    const strHTMLs = imgs.map(img => `
-    <div class="item"><img onclick="onMemeSelect('${img.id}')" src=${img.url} alt=""></div>
-    `)
-
-    const elGrid = document.querySelector('.saved-gallery-grid')
-    elGrid.innerHTML = strHTMLs.join('')
-
-
-}
-
-function onMemeSelect(memeId) {
-    document.querySelector('.editor-container').classList.remove('hidden')
-    document.querySelector('.gallery-container').classList.add('hidden')
-    document.querySelector('.saved-gallery-grid').classList.add('hidden')
-    getMemeFromSaved(memeId)
-    renderMeme()
-
 }

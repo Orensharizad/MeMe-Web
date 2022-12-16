@@ -31,7 +31,7 @@ let gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: '',
+            txt: 'First Line',
             size: 60,
             align: 'center',
             color: 'white',
@@ -41,7 +41,7 @@ let gMeme = {
             y: 50
         },
         {
-            txt: '',
+            txt: 'Secand Line',
             size: 60,
             align: 'center',
             color: 'white',
@@ -62,7 +62,7 @@ function getUserSavedMeme() {
 }
 
 function createImgs() {
-    for (var i = 0; i < 19; i++) {
+    for (var i = 1; i < 19; i++) {
         const img = createImg()
         gImgs.push(img)
     }
@@ -82,6 +82,7 @@ function getMeme() {
     return gMeme
 }
 function setLineTxt(val) {
+    if (!val) return
     let selectedLine = gMeme.selectedLineIdx
     gMeme.lines[selectedLine].txt = val
 }
@@ -101,15 +102,8 @@ function setDecreaseFont() {
     gMeme.lines[selectedLine].size--
 }
 function switchLine() {
-    // if (gCurrLine === 0) gCurrLine = 1
-    // else gCurrLine = 0
-    // console.log(gCurrLine)
-    // gMeme.lines.forEach(line => line.isFocus = !isFocus)
-    if (gMeme.selectedLineIdx < gMeme.lines.length - 1) {
-        gMeme.selectedLineIdx++
-    } else {
-        gMeme.selectedLineIdx = 0
-    }
+    gMeme.selectedLineIdx++
+    if (gMeme.selectedLineIdx > gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
 
 }
 
@@ -130,6 +124,12 @@ function setLineDrag(isDrag) {
     const lineIdx = gMeme.selectedLineIdx
     const line = gMeme.lines[lineIdx]
     line.isDrag = isDrag
+    line.isFocus = isDrag
+}
+function setLineFoucs(isFocus) {
+    const lineIdx = gMeme.selectedLineIdx
+    const line = gMeme.lines[lineIdx]
+    line.isFocus = isFocus
 }
 
 function doUploadImg(imgDataUrl, onSuccess) {
@@ -163,7 +163,6 @@ function saveMemeToStorage() {
     saveToStorage(STORAGE_KEY, gUserSavedMeme)
 }
 
-
 function getMemeFromSaved(memeId) {
     const meme = gUserSavedMeme.find(savedMeme => savedMeme.id === memeId)
     const memeToLoad = { ...meme }
@@ -171,6 +170,30 @@ function getMemeFromSaved(memeId) {
     console.log('savedMeme', meme)
     gMeme = memeToLoad
 
+}
+
+function addLine() {
+    const line = {
+        txt: 'new line added',
+        size: 60,
+        align: 'center',
+        color: 'white',
+        isFocus: false,
+        isDrag: false,
+        x: 200,
+        y: 200
+    }
+    if (gMeme.lines.length === 3) return
+    gMeme.lines.push(line)
+    gMeme.selectedLineIdx = 2
+}
+
+
+
+function removeMeme(imgId) {
+    const memeIdx = gUserSavedMeme.findIndex(meme => meme.id === imgId)
+    gUserSavedMeme.splice(memeIdx, 1)
+    saveMemeToStorage()
 }
 
 

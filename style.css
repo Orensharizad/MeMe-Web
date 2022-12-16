@@ -30,9 +30,10 @@ img {
 }
 
 .main-layout>*:not(.full) {
-    max-width: 95vw;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 100%;
+    margin: 1em;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
 
 }
 
@@ -45,7 +46,6 @@ img {
 
 .container {
     margin: 0 auto;
-    max-width: 95vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -53,11 +53,9 @@ img {
 
 .logo {
     text-transform: uppercase;
-    font-weight: lighter;
-    font-size: 1.5em;
+    font-size: 2.5em;
     color: #ffffff;
     padding-inline-start: 3em;
-    font-weight: 100;
 
 }
 
@@ -93,23 +91,25 @@ img {
 
 
 .gallery-container {
-    margin: auto;
+    /* margin: auto; */
     padding-top: 50px;
-    padding: 3em;
-    margin-top: 1.5em;
-    border-radius: 2em;
+    padding: 0.5em;
+    border-radius: 1em;
     background-color: #383b44;
     height: 100%;
+    margin: 1.5em;
+
 }
 
 
 
 .filter-container {
     margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
     font-size: 1em;
-
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: 3fr 3fr 1fr;
+    grid-template-areas: "search words more";
 }
 
 .search {
@@ -117,9 +117,8 @@ img {
     color: #ffffff;
     border-radius: 2em;
     border: none;
-    width: 40vw;
     padding: 8px;
-    margin: 0 5px;
+    grid-area: search;
 
 }
 
@@ -127,10 +126,10 @@ img {
     background-color: #a5a5a5;
     border-radius: 2em;
     border: none;
-    width: 40vw;
     padding: 8px;
     color: #ffffff;
-    margin: 0 5px;
+    grid-area: words;
+
 
 }
 
@@ -138,24 +137,19 @@ img {
     background: linear-gradient(90deg, rgba(19, 159, 172, 1) 34%, rgba(72, 210, 146, 1) 100%);
     border-radius: 2em;
     color: #ffffff;
-    width: 10vw;
     border: none;
     cursor: pointer;
-    margin: 0 5px;
+    grid-area: more;
+
+
 }
 
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1em;
-    /* margin: auto; */
-    /* padding-top: 50px; */
-    /* padding: 3em; */
-    /* margin-top: 1.5em; */
-    /* border-radius: 2em; */
-    /* background-color: #383b44; */
-    /* height: 100%; */
+
 }
 
 .grid-container img {
@@ -182,10 +176,12 @@ img {
 
     display: flex;
     margin-top: 100px;
+
 }
 
 .canvas-container {
     width: 50%;
+
 }
 
 canvas {
@@ -252,6 +248,7 @@ canvas {
     background-color: #19a59f;
     padding: 2em;
     border-radius: 1em;
+    width: 90%;
 
 }
 
@@ -290,11 +287,6 @@ canvas {
 }
 
 
-
-
-
-
-
 .custom-file-upload {
     border: 1px solid black;
     color: white;
@@ -327,20 +319,67 @@ input[type="file"] {
     border-radius: 2em;
 }
 
+@media (max-width:940px) {
+    .filter-container {
+        margin-bottom: 10px;
+        /* font-size: 1em; */
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "search    search"
+            "words      more";
+    }
 
-
+    .search {
+        grid-area: search;
+        margin-bottom: 1em;
+    }
+}
 
 @media (max-width:500px) {
     .main-layout>*:not(.full) {
-        max-width: 520px;
+        max-width: 100%;
+        margin: 0.5em;
+
+    }
+
+    .main-header {
+        border-radius: 0;
+        height: 90px;
+    }
+
+    .container {
+        padding: 1em;
+    }
+
+    .logo {
+        font-size: 2.5em;
+        color: #ffffff;
+        padding-inline-start: 0;
+
     }
 
     .editor-container {
         flex-direction: column;
     }
 
+    .canvas-container {
+        width: 100%;
+
+    }
+
     canvas {
         width: 90vw;
+        height: 40vh;
+
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1em;
+        width: 100%;
     }
 
     .editor-container {
@@ -355,6 +394,15 @@ input[type="file"] {
     }
 
     .main-nav ul {
+        display: none;
+    }
+
+    .text-editor-btns {
+        width: 90%;
+
+    }
+
+    .hidden {
         display: none;
     }
 
