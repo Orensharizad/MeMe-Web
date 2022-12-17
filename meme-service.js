@@ -129,8 +129,9 @@ function doUploadImg(imgDataUrl, onSuccess) {
         })
 }
 function clearText() {
-    const { lines, selectedLineIdx } = gMeme
+    let { lines, selectedLineIdx } = gMeme
     lines.splice(selectedLineIdx, 1)
+    gMeme.selectedLineIdx = 0
 }
 function saveMeme(imgURL) {
     gMeme.url = imgURL

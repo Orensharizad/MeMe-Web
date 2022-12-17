@@ -206,8 +206,8 @@ canvas {
     background-color: white;
     border-radius: 1em;
 
-}
 
+}
 
 .options-container {
     display: flex;
@@ -274,6 +274,8 @@ canvas {
     border-radius: 10px;
 }
 
+
+
 .text-editor-btns button:hover {
     background-color: gray;
 }
@@ -321,7 +323,6 @@ canvas {
 
 }
 
-
 .share-meme a {
     color: #ffffff;
     text-decoration: none;
@@ -336,7 +337,6 @@ canvas {
     background-color: #22252d;
 }
 
-
 .custom-file-upload {
     border: 1px solid black;
     color: white;
@@ -344,7 +344,6 @@ canvas {
     padding: 5px;
     cursor: pointer;
 }
-
 
 
 .color-input {
@@ -394,6 +393,8 @@ canvas {
     .emojy-container {
         font-size: 2em;
     }
+
+
 }
 
 @media (max-width:500px) {
@@ -513,9 +514,6 @@ canvas {
         transition: background-color .6s;
         font-size: 2em;
     }
-
-
-
 
 
 }
