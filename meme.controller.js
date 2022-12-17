@@ -2,6 +2,7 @@
 let gElCanvas
 let gCtx
 let gStartPos
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 
 
@@ -42,64 +43,22 @@ function renderMemeImg() {
     renderLine()
 
 }
-// function renderLine() {
-//     const meme = getMeme()
-//     const lines = meme.lines
-//     lines.forEach((line, idx) => {
 
-//         if (!idx) {
-//             gCtx.beginPath()
-//             gCtx.font = `${line.size}px impact`
-//             gCtx.fillStyle = line.color
-//             gCtx.strokeStyle = 'black'
-//             gCtx.lineWidth = 2
-//             gCtx.textAlign = 'center'
-//             gCtx.textBaseline = 'middle'
-//             gCtx.fillText(line.txt, line.x, line.y)
-//             gCtx.strokeText(line.txt, line.x, line.y)
-//             gCtx.closePath()
-//         }
-//         if (idx === 1) {
-//             gCtx.beginPath()
-//             gCtx.font = `${line.size}px impact`
-//             gCtx.fillStyle = line.color
-//             gCtx.strokeStyle = 'black'
-//             gCtx.lineWidth = 2
-//             gCtx.textAlign = 'center'
-//             gCtx.textBaseline = 'middle'
-//             gCtx.fillText(line.txt, line.x, line.y)
-//             gCtx.strokeText(line.txt, line.x, line.y)
-//             gCtx.closePath()
-//         }
-//         else {
-//             gCtx.beginPath()
-//             gCtx.font = `${line.size}px impact`
-//             gCtx.fillStyle = line.color
-//             gCtx.strokeStyle = 'black'
-//             gCtx.lineWidth = 2
-//             gCtx.textAlign = 'center'
-//             gCtx.textBaseline = 'middle'
-//             gCtx.fillText(line.txt, line.x, line.y)
-//             gCtx.strokeText(line.txt, line.x, line.y)
-//             gCtx.closePath()
-//         }
-//     })
-// }
 function renderLine() {
     const meme = getMeme()
     const lines = meme.lines
     lines.forEach((line, idx) => {
         gCtx.beginPath()
-        gCtx.font = `${line.size}px impact`
+        gCtx.font = `${line.size}px ${line.font}`
         gCtx.fillStyle = line.color
         gCtx.strokeStyle = 'black'
         gCtx.lineWidth = 2
-        gCtx.textAlign = 'center'
+        gCtx.textAlign = line.align
         gCtx.textBaseline = 'middle'
         gCtx.fillText(line.txt, line.x, line.y)
         gCtx.strokeText(line.txt, line.x, line.y)
         if (idx === meme.selectedLineIdx) {
-            gCtx.strokeRect(line.x - 200, line.y - 40, 450, 80);
+            gCtx.strokeRect(line.x - 225, line.y - 40, 450, 80);
         }
         gCtx.closePath()
     })
@@ -161,18 +120,17 @@ function getEvPos(ev) {
         y: ev.offsetY,
     }
     // Check if its a touch ev
-    // if (TOUCH_EVS.includes(ev.type)) {
-    //     console.log('ev:', ev)
-    //     //soo we will not trigger the mouse ev
-    //     ev.preventDefault()
-    //     //Gets the first touch point
-    //     ev = ev.changedTouches[0]
-    //     //Calc the right pos according to the touch screen
-    //     pos = {
-    //         x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-    //         y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-    //     }
-    // }
+    if (TOUCH_EVS.includes(ev.type)) {
+        //soo we will not trigger the mouse ev
+        ev.preventDefault()
+        //Gets the first touch point
+        ev = ev.changedTouches[0]
+        //Calc the right pos according to the touch screen
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
     return pos
 }
 function downloadCanvas(elLink) {
@@ -226,3 +184,17 @@ function toggleMenu() {
     document.body.classList.toggle('menu-open')
 }
 
+function onSetTextAlign(val) {
+    setTextAlign(val)
+    renderMeme()
+}
+
+function onSetImpact(val) {
+    setImpact(val)
+    renderMeme()
+}
+
+function onSetEmojy(val) {
+    setEmojy(val)
+    renderMeme()
+}

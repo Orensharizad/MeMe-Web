@@ -58,7 +58,7 @@
         <!-- options -->
         <div class="options-container">
 
-            <input class="text-input" oninput="onSetLineTxt(this.value)" type="text" name="text">
+            <input class="text-input" onkeyup="onSetLineTxt(this.value)" type="text" name="text">
             <div class="editor-btns">
                 <button class="btn-switch" onclick="onSwitchLine()">⇅</button>
                 <button class="btn-add" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
@@ -68,17 +68,31 @@
             <div class="text-editor-btns">
                 <button class="btn-increase-font item" onclick="onSetIncreaseFont()">A+</button>
                 <button class="btn-decrease-font item" onclick="onSetDecreaseFont()">A-</button>
-                <button class="item"><i class="fa-solid fa-align-left"></i></button>
-                <button class="item"><i class="fa-solid fa-align-center"></i></button>
-                <button class="item"><i class="fa-solid fa-align-right"></i></button>
-                <button class="impact-item item">impact</button>
-                <button class="item" onclick="onSaveMeme()">S</button>
+                <button onclick="onSetTextAlign('right')" class="item"><i class="fa-solid fa-align-left"></i></button>
+                <button onclick="onSetTextAlign('center')" class="item"><i
+                        class="fa-solid fa-align-center"></i></button>
+                <button onclick="onSetTextAlign('left')" class="item"><i class="fa-solid fa-align-right"></i></button>
+                <!-- <button class="impact-item item"></button> -->
+                <select class="impact-item item" onchange="onSetImpact(this.value)">
+                    <option value="impact">Impact</option>
+                    <option value="arial">Arial</option>
+                    <option value="monospace">monospace</option>
+                </select>
+                <button class="item" onclick="onSaveMeme()">Save</button>
                 <input type="color" name="color" class=" item" oninput="onSetColor(this.value)">
 
                 <!-- <input class="color-input item" oninput="onSetColor(this.value)" type="color" name="color"> -->
 
 
 
+            </div>
+            <div class="emojy-container">
+                <div class="emojy" onclick="onSetEmojy('😀')">😀</div>
+                <div class="emojy" onclick="onSetEmojy('😡')">😡</div>
+                <div class="emojy" onclick="onSetEmojy('😍')">😍</div>
+                <div class="emojy" onclick="onSetEmojy('🤣')">🤣</div>
+                <div class="emojy" onclick="onSetEmojy('😎')">😎</div>
+                <div class="emojy" onclick="onSetEmojy('🤩')">🤩</div>
             </div>
             <div class="share-meme">
                 <a class="share-btn" onclick="onUploadImg()">Share</a>

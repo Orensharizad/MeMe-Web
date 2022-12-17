@@ -29,6 +29,12 @@ img {
     width: 100%;
 }
 
+button {
+    cursor: pointer;
+}
+
+
+
 .menu-toggle-btn {
     display: none;
 }
@@ -176,6 +182,15 @@ img {
     cursor: pointer;
 }
 
+.remove-meme {
+    background-color: #d52637;
+    font-size: 1em;
+}
+
+.remove-meme:hover {
+    border-color: #fff;
+}
+
 .editor-container {
 
     display: flex;
@@ -208,16 +223,12 @@ canvas {
     background-color: #383b42;
 }
 
-
-
 .options-btns {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
-
-
 
 .editor-btns button {
     font-size: 2em;
@@ -229,6 +240,10 @@ canvas {
     color: white;
     height: 2em;
 
+}
+
+.editor-btns button:hover {
+    background-color: #22252d;
 }
 
 .btn-switch {
@@ -266,9 +281,6 @@ canvas {
     background-color: gray;
 }
 
-/* input[type="color"] { */
-/* } */
-
 .impact-item {
     grid-column: 1 /4;
 }
@@ -282,6 +294,26 @@ canvas {
     height: 3em;
     border-radius: 2em;
 
+}
+
+.emojy-container {
+    background-color: #ccc;
+    border-radius: 2em;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2em;
+}
+
+.emojy {
+    cursor: pointer;
+
+}
+
+.emojy:hover {
+    background-color: rgb(188, 188, 188);
+    border-radius: 2em;
 }
 
 .share-meme {
@@ -301,6 +333,10 @@ canvas {
     padding: 10px;
     background-color: #19a59f;
     cursor: pointer;
+}
+
+.share-meme a:hover {
+    background-color: #22252d;
 }
 
 
@@ -357,6 +393,10 @@ canvas {
         grid-area: search;
         margin-bottom: 1em;
     }
+
+    .emojy-container {
+        font-size: 2em;
+    }
 }
 
 @media (max-width:500px) {
@@ -383,9 +423,6 @@ canvas {
 
     }
 
-    .editor-container {
-        flex-direction: column;
-    }
 
     .canvas-container {
         width: 100%;
@@ -407,12 +444,13 @@ canvas {
 
     .editor-container {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
     }
 
     .options-container {
         width: 90vw;
-        height: 40vh;
+        height: 50vh;
         margin: 20px auto;
     }
 
@@ -438,6 +476,7 @@ canvas {
     }
 
     .menu-toggle-btn {
+        display: block;
         background-color: inherit;
         color: #fff;
         font-size: 2rem;

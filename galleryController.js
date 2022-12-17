@@ -39,7 +39,7 @@ function onRenderSavedMeme() {
     const strHTMLs = imgs.map(img => `
     <div class="item">
     <img onclick="onMemeSelect('${img.id}')" src=${img.url} alt="">
-    <button onclick="onRemoveMeme('${img.id}')" class="remove-meme">X</button>
+    <button onclick="onRemoveMeme('${img.id}')" class="remove-meme"><i class="fa-solid fa-trash"></i></button>
     </div>
     `)
 

@@ -32,22 +32,24 @@ let gMeme = {
     lines: [
         {
             txt: 'First Line',
+            font: 'impact',
             size: 60,
             align: 'center',
             color: 'white',
             isFocus: true,
             isDrag: false,
-            x: 200,
+            x: 225,
             y: 50
         },
         {
             txt: 'Secand Line',
+            font: 'impact',
             size: 60,
             align: 'center',
             color: 'white',
             isFocus: false,
             isDrag: false,
-            x: 200,
+            x: 225,
             y: 400
 
         }
@@ -57,14 +59,12 @@ function getUserSavedMeme() {
     console.log('gUSerSavrd', gUserSavedMeme)
     return gUserSavedMeme
 }
-
 function getImgs() {
     const imgs = gImgs
     if (!gFilterBy.search) return imgs
     let filteredImgs = gImgs.filter((img) => img.keywords.includes(gFilterBy.search))
     return filteredImgs
 }
-
 function getMeme() {
     return gMeme
 }
@@ -93,14 +93,12 @@ function switchLine() {
     if (gMeme.selectedLineIdx > gMeme.lines.length - 1) gMeme.selectedLineIdx = 0
 
 }
-
 function isLineClicked(clickedPos) {
     const lineIdx = gMeme.selectedLineIdx
     const line = gMeme.lines[lineIdx]
     const distance = Math.sqrt((line.x - clickedPos.x) ** 2 + (line.y - clickedPos.y) ** 2)
     return distance <= line.size
 }
-
 function moveLine(pos) {
     const lineIdx = gMeme.selectedLineIdx
     const line = gMeme.lines[lineIdx]
@@ -118,7 +116,6 @@ function setLineFoucs(isFocus) {
     const line = gMeme.lines[lineIdx]
     line.isFocus = isFocus
 }
-
 function doUploadImg(imgDataUrl, onSuccess) {
     // Pack the image for delivery
     const formData = new FormData()
@@ -131,12 +128,10 @@ function doUploadImg(imgDataUrl, onSuccess) {
             onSuccess(url)
         })
 }
-
 function clearText() {
-    const lines = gMeme.lines
-    lines.forEach(line => line.txt = '')
+    const { lines, selectedLineIdx } = gMeme
+    lines.splice(selectedLineIdx, 1)
 }
-
 function saveMeme(imgURL) {
     gMeme.url = imgURL
     const savedMeme = { ...gMeme }
@@ -145,7 +140,6 @@ function saveMeme(imgURL) {
     console.log('Saved', gUserSavedMeme)
     saveMemeToStorage()
 }
-
 function saveMemeToStorage() {
     saveToStorage(STORAGE_KEY, gUserSavedMeme)
 }
@@ -162,17 +156,18 @@ function getMemeFromSaved(memeId) {
 function addLine() {
     const line = {
         txt: 'new line added',
+        font: 'impact',
         size: 60,
         align: 'center',
         color: 'white',
         isFocus: false,
         isDrag: false,
-        x: 200,
+        x: 225,
         y: 200
     }
-    if (gMeme.lines.length === 3) return
+    // if (gMeme.lines.length === 3) return
     gMeme.lines.push(line)
-    gMeme.selectedLineIdx = 2
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
 function removeMeme(imgId) {
@@ -186,5 +181,33 @@ function setFilterBy(filterBy) {
     gFilterBy.search = filterBy
 }
 
+
+function setTextAlign(val) {
+    const { lines, selectedLineIdx } = gMeme
+    lines[selectedLineIdx].align = val
+}
+
+
+function setImpact(val) {
+    gMeme.lines.forEach(line => line.font = val)
+}
+
+function setEmojy(val) {
+    const line = {
+        txt: val,
+        font: 'impact',
+        size: 60,
+        align: 'center',
+        color: 'white',
+        isFocus: false,
+        isDrag: false,
+        x: 225,
+        y: 200
+    }
+    gMeme.lines.push(line)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+
+
+}
 
 
