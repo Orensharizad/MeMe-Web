@@ -31,7 +31,12 @@
 
         <div class="filter-container">
             <input onkeyup="onSetFilterBy(this.value)" class="search" placeholder="Search.." type="text">
-            <div class="words">Funny animal Men Women comic Smile</div>
+            <div class="words">
+                <p onclick="onSetFilterBy('Funny')">Funny</p>
+                <p onclick="onSetFilterBy('Black')">Black</p>
+                <p onclick="onSetFilterBy('Baby')">Baby</p>
+                <p onclick="onSetFilterBy('Government')">Government</p>
+            </div>
             <button onclick="onRenderRandomMeme()" class="btn-more">imFlexible</button>
         </div>
 

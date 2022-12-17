@@ -2,10 +2,10 @@
 let gIdx = 0
 let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 const STORAGE_KEY = 'memeDB'
-const gFilterBy = { search: "" }
+const gFilterBy = { search: '' }
 
 let gImgs = [
-    { id: 1, url: 'imgs/1.jpg', keywords: ['govement'] },
+    { id: 1, url: 'imgs/1.jpg', keywords: ['government'] },
     { id: 2, url: 'imgs/2.jpg', keywords: ['dog', 'animal'] },
     { id: 3, url: 'imgs/3.jpg', keywords: ['baby'] },
     { id: 4, url: 'imgs/4.jpg', keywords: ['animal', 'cat'] },
@@ -14,14 +14,14 @@ let gImgs = [
     { id: 7, url: 'imgs/7.jpg', keywords: ['black', 'baby'] },
     { id: 8, url: 'imgs/8.jpg', keywords: ['funny'] },
     { id: 9, url: 'imgs/9.jpg', keywords: ['funny', 'baby'] },
-    { id: 10, url: 'imgs/10.jpg', keywords: ['govement', 'black'] },
+    { id: 10, url: 'imgs/10.jpg', keywords: ['government', 'black'] },
     { id: 11, url: 'imgs/11.jpg', keywords: ['black'] },
     { id: 12, url: 'imgs/12.jpg', keywords: ['funny'] },
     { id: 13, url: 'imgs/13.jpg', keywords: ['funny'] },
     { id: 14, url: 'imgs/14.jpg', keywords: ['funny'] },
     { id: 15, url: 'imgs/15.jpg', keywords: ['funny'] },
     { id: 16, url: 'imgs/16.jpg', keywords: ['funny'] },
-    { id: 17, url: 'imgs/17.jpg', keywords: ['funny', 'govement'] },
+    { id: 17, url: 'imgs/17.jpg', keywords: ['funny', 'government'] },
     { id: 18, url: 'imgs/18.jpg', keywords: ['funny'] },
 ]
 let gUserSavedMeme = loadFromStorage(STORAGE_KEY) || []
@@ -178,6 +178,7 @@ function removeMeme(imgId) {
 
 function setFilterBy(filterBy) {
     if (filterBy === undefined) return
+    console.log(filterBy)
     gFilterBy.search = filterBy
 }
 

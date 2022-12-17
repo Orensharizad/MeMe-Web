@@ -2,7 +2,9 @@
 let gElCanvas
 let gCtx
 let gStartPos
+let download = false
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+
 
 
 
@@ -57,9 +59,12 @@ function renderLine() {
         gCtx.textBaseline = 'middle'
         gCtx.fillText(line.txt, line.x, line.y)
         gCtx.strokeText(line.txt, line.x, line.y)
-        if (idx === meme.selectedLineIdx) {
+
+        if (download === true) gCtx.strokeRect(0, 0, 0, 0);
+        else if (idx === meme.selectedLineIdx) {
             gCtx.strokeRect(line.x - 225, line.y - 40, 450, 80);
         }
+
         gCtx.closePath()
     })
 }
@@ -134,8 +139,11 @@ function getEvPos(ev) {
     return pos
 }
 function downloadCanvas(elLink) {
+    download = true
+    renderMeme()
     const data = gElCanvas.toDataURL()
     elLink.href = data
+
 }
 function onUploadImg() {
     const imgDataUrl = gElCanvas.toDataURL('image/jpeg') // Gets the canvas content as an image format

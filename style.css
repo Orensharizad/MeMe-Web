@@ -91,14 +91,11 @@ button {
 
 }
 
-
-
 .clean-list {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
-
 
 .gallery-container {
     /* margin: auto; */
@@ -110,8 +107,6 @@ button {
     margin: 1.5em;
 
 }
-
-
 
 .filter-container {
     margin-bottom: 20px;
@@ -136,10 +131,12 @@ button {
     background-color: #a5a5a5;
     border-radius: 2em;
     border: none;
-    padding: 8px;
     color: #ffffff;
     grid-area: words;
-
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    font-size: 1em;
 
 }
 
@@ -153,7 +150,6 @@ button {
 
 
 }
-
 
 .grid-container {
     display: grid;
@@ -214,7 +210,6 @@ canvas {
 
 
 .options-container {
-    width: 35%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -268,6 +263,7 @@ canvas {
     padding: 2em;
     border-radius: 1em;
     width: 90%;
+
 }
 
 .text-editor-btns button {
@@ -275,6 +271,7 @@ canvas {
     cursor: pointer;
     padding: 0.3em;
     font-size: 1em;
+    border-radius: 10px;
 }
 
 .text-editor-btns button:hover {
