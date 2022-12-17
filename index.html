@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MeMe</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body onload="init()" class="main-layout">
@@ -62,8 +62,8 @@
         </div>
         <!-- options -->
         <div class="options-container">
-
             <input class="text-input" onkeyup="onSetLineTxt(this.value)" type="text" name="text">
+
             <div class="editor-btns">
                 <button class="btn-switch" onclick="onSwitchLine()">⇅</button>
                 <button class="btn-add" onclick="onAddLine()"><i class="fa-solid fa-plus"></i></button>
@@ -71,6 +71,7 @@
             </div>
 
             <div class="text-editor-btns">
+
                 <button class="btn-increase-font item" onclick="onSetIncreaseFont()">A+</button>
                 <button class="btn-decrease-font item" onclick="onSetDecreaseFont()">A-</button>
                 <button onclick="onSetTextAlign('right')" class="item"><i class="fa-solid fa-align-left"></i></button>
@@ -91,7 +92,9 @@
 
 
             </div>
+
             <div class="emojy-container">
+
                 <div class="emojy" onclick="onSetEmojy('😀')">😀</div>
                 <div class="emojy" onclick="onSetEmojy('😡')">😡</div>
                 <div class="emojy" onclick="onSetEmojy('😍')">😍</div>
@@ -99,6 +102,7 @@
                 <div class="emojy" onclick="onSetEmojy('😎')">😎</div>
                 <div class="emojy" onclick="onSetEmojy('🤩')">🤩</div>
             </div>
+
             <div class="share-meme">
                 <a class="share-btn" onclick="onUploadImg()">Share</a>
                 <a class="download-btn" href="#" onclick="downloadCanvas(this)" download="my-img">Download</a>

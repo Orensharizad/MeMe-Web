@@ -1,0 +1,89 @@
+.gallery-container {
+    /* margin: auto; */
+    padding-top: 50px;
+    padding: 0.5em;
+    border-radius: 1em;
+    background-color: #383b44;
+    height: 100%;
+    margin: 1.5em;
+
+}
+
+.filter-container {
+    margin-bottom: 20px;
+    font-size: 1em;
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: 3fr 3fr 1fr;
+    grid-template-areas: "search words more";
+}
+
+.search {
+    background-color: #1a1a1b;
+    color: #ffffff;
+    border-radius: 2em;
+    border: none;
+    padding: 8px;
+    grid-area: search;
+
+}
+
+.words {
+    background-color: #a5a5a5;
+    border-radius: 2em;
+    border: none;
+    color: #ffffff;
+    grid-area: words;
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    font-size: 1em;
+
+}
+
+.btn-more {
+    background: linear-gradient(90deg, rgba(19, 159, 172, 1) 34%, rgba(72, 210, 146, 1) 100%);
+    border-radius: 2em;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    grid-area: more;
+
+
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+
+}
+
+.grid-container img {
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.grid-container img:hover {
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.saved-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1em;
+}
+
+.saved-gallery-grid img {
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.remove-meme {
+    background-color: #d52637;
+    font-size: 1em;
+}
+
+.remove-meme:hover {
+    border-color: #fff;
+}

@@ -1,0 +1,143 @@
+.editor-container {
+
+    display: flex;
+    margin-top: 50px;
+
+}
+
+.canvas-container {
+    width: 50%;
+
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 1em;
+    background-color: #383b42;
+}
+
+.options-btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editor-btns button {
+    font-size: 2em;
+    cursor: pointer;
+    border-radius: 0.4em;
+    font-weight: bold;
+    padding: 0.4em;
+    border: none;
+    color: white;
+    height: 2em;
+
+}
+
+.editor-btns button:hover {
+    background-color: #22252d;
+}
+
+.btn-switch {
+
+    background-color: #4db7d3;
+}
+
+.btn-add {
+    background-color: #3fdb57;
+    margin: 0 0.5em;
+
+}
+
+.btn-clear {
+    background-color: #d52637;
+}
+
+.text-editor-btns {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: #19a59f;
+    padding: 2em;
+    border-radius: 1em;
+    width: 90%;
+
+}
+
+.text-editor-btns button {
+    background-color: #fff;
+    cursor: pointer;
+    padding: 0.3em;
+    font-size: 1em;
+    border-radius: 10px;
+}
+
+.text-editor-btns button:hover {
+    background-color: gray;
+}
+
+.impact-item {
+    grid-column: 1 /4;
+}
+
+.item {
+    margin: 0.4em;
+}
+
+.text-input {
+    width: 80%;
+    height: 3em;
+    border-radius: 2em;
+
+}
+
+.emojy-container {
+    background-color: #ccc;
+    border-radius: 2em;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2em;
+}
+
+.emojy {
+    cursor: pointer;
+
+}
+
+.emojy:hover {
+    background-color: rgb(188, 188, 188);
+    border-radius: 2em;
+}
+
+.share-meme {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 35%;
+
+}
+
+.share-meme a {
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 1em;
+    padding: 10px;
+    background-color: #19a59f;
+    cursor: pointer;
+}
+
+.share-meme a:hover {
+    background-color: #22252d;
+}
+
+
+
+.hidden {
+    display: none;
+}
