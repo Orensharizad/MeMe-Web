@@ -222,3 +222,7 @@ function onSaveMeme() {
     const memeURL = gElCanvas.toDataURL()
     saveMeme(memeURL)
 }
+function toggleMenu() {
+    document.body.classList.toggle('menu-open')
+}
+

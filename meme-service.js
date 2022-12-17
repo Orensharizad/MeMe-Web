@@ -2,29 +2,29 @@
 let gIdx = 0
 let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 const STORAGE_KEY = 'memeDB'
+const gFilterBy = { search: "" }
 
-// let gImgs = [
-//     { id: 1, url: 'imgs/1.jpg', keywords: ['funny', 'cat'] },
-//     { id: 2, url: 'imgs/2.jpg', keywords: ['funny', 'cat'] },
-//     { id: 3, url: 'imgs/3.jpg', keywords: ['funny', 'cat'] },
-//     { id: 4, url: 'imgs/4.jpg', keywords: ['funny', 'cat'] },
-//     { id: 5, url: 'imgs/5.jpg', keywords: ['funny', 'cat'] },
-//     { id: 6, url: 'imgs/6.jpg', keywords: ['funny', 'cat'] },
-//     { id: 7, url: 'imgs/7.jpg', keywords: ['funny', 'cat'] },
-//     { id: 8, url: 'imgs/8.jpg', keywords: ['funny', 'cat'] },
-//     { id: 9, url: 'imgs/9.jpg', keywords: ['funny', 'cat'] },
-//     { id: 10, url: 'imgs/10.jpg', keywords: ['funny', 'cat'] },
-//     { id: 11, url: 'imgs/11.jpg', keywords: ['funny', 'cat'] },
-//     { id: 12, url: 'imgs/12.jpg', keywords: ['funny', 'cat'] },
-//     { id: 13, url: 'imgs/13.jpg', keywords: ['funny', 'cat'] },
-//     { id: 14, url: 'imgs/14.jpg', keywords: ['funny', 'cat'] },
-//     { id: 15, url: 'imgs/15.jpg', keywords: ['funny', 'cat'] },
-//     { id: 16, url: 'imgs/16.jpg', keywords: ['funny', 'cat'] },
-//     { id: 17, url: 'imgs/17.jpg', keywords: ['funny', 'cat'] },
-//     { id: 18, url: 'imgs/18.jpg', keywords: ['funny', 'cat'] },
-// ]
+let gImgs = [
+    { id: 1, url: 'imgs/1.jpg', keywords: ['govement'] },
+    { id: 2, url: 'imgs/2.jpg', keywords: ['dog', 'animal'] },
+    { id: 3, url: 'imgs/3.jpg', keywords: ['baby'] },
+    { id: 4, url: 'imgs/4.jpg', keywords: ['animal', 'cat'] },
+    { id: 5, url: 'imgs/5.jpg', keywords: ['funny', 'baby'] },
+    { id: 6, url: 'imgs/6.jpg', keywords: ['funny'] },
+    { id: 7, url: 'imgs/7.jpg', keywords: ['black', 'baby'] },
+    { id: 8, url: 'imgs/8.jpg', keywords: ['funny'] },
+    { id: 9, url: 'imgs/9.jpg', keywords: ['funny', 'baby'] },
+    { id: 10, url: 'imgs/10.jpg', keywords: ['govement', 'black'] },
+    { id: 11, url: 'imgs/11.jpg', keywords: ['black'] },
+    { id: 12, url: 'imgs/12.jpg', keywords: ['funny'] },
+    { id: 13, url: 'imgs/13.jpg', keywords: ['funny'] },
+    { id: 14, url: 'imgs/14.jpg', keywords: ['funny'] },
+    { id: 15, url: 'imgs/15.jpg', keywords: ['funny'] },
+    { id: 16, url: 'imgs/16.jpg', keywords: ['funny'] },
+    { id: 17, url: 'imgs/17.jpg', keywords: ['funny', 'govement'] },
+    { id: 18, url: 'imgs/18.jpg', keywords: ['funny'] },
+]
 let gUserSavedMeme = loadFromStorage(STORAGE_KEY) || []
-let gImgs = []
 let gMeme = {
     id: makeId(),
     selectedImgId: 5,
@@ -53,31 +53,18 @@ let gMeme = {
         }
     ]
 }
-
-createImgs()
-
 function getUserSavedMeme() {
     console.log('gUSerSavrd', gUserSavedMeme)
     return gUserSavedMeme
 }
 
-function createImgs() {
-    for (var i = 1; i < 19; i++) {
-        const img = createImg()
-        gImgs.push(img)
-    }
-}
-function createImg() {
-    const img = {
-        id: gIdx++,
-        url: `imgs/${gIdx}.jpg`,
-        keywords: ['funny', 'cat']
-    }
-    return img
-}
 function getImgs() {
-    return gImgs
+    const imgs = gImgs
+    if (!gFilterBy.search) return imgs
+    let filteredImgs = gImgs.filter((img) => img.keywords.includes(gFilterBy.search))
+    return filteredImgs
 }
+
 function getMeme() {
     return gMeme
 }
@@ -188,12 +175,16 @@ function addLine() {
     gMeme.selectedLineIdx = 2
 }
 
-
-
 function removeMeme(imgId) {
     const memeIdx = gUserSavedMeme.findIndex(meme => meme.id === imgId)
     gUserSavedMeme.splice(memeIdx, 1)
     saveMemeToStorage()
 }
+
+function setFilterBy(filterBy) {
+    if (filterBy === undefined) return
+    gFilterBy.search = filterBy
+}
+
 
 

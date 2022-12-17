@@ -65,3 +65,8 @@ function onMoveGalleryPage() {
     document.querySelector('.saved-meme-container').classList.add('hidden')
 }
 
+function onSetFilterBy(filterBy) {
+    const filter = filterBy.toLowerCase()
+    setFilterBy(filter)
+    renderGallery()
+}

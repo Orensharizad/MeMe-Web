@@ -10,6 +10,7 @@
 </head>
 
 <body onload="init()" class="main-layout">
+    <div class="main-screen full" onclick="toggleMenu()"></div>
 
     <!-- header -->
     <header class="main-header full">
@@ -21,13 +22,15 @@
                     <li onclick="onRenderSavedMeme()"><a href="#">Memes</a></li>
                 </ul>
             </nav>
+            <button class="menu-toggle-btn" onclick="toggleMenu()">☰</button>
+
         </div>
     </header>
     <!-- Gallery -->
     <section class="gallery-container">
 
         <div class="filter-container">
-            <input class="search" placeholder="Search.." type="text" name="" id="">
+            <input onkeyup="onSetFilterBy(this.value)" class="search" placeholder="Search.." type="text">
             <div class="words">Funny animal Men Women comic Smile</div>
             <button onclick="onRenderRandomMeme()" class="btn-more">imFlexible</button>
         </div>
@@ -65,18 +68,18 @@
             <div class="text-editor-btns">
                 <button class="btn-increase-font item" onclick="onSetIncreaseFont()">A+</button>
                 <button class="btn-decrease-font item" onclick="onSetDecreaseFont()">A-</button>
-                <button class="item">left</button>
-                <button class="item">center</button>
-                <button class="item">right</button>
+                <button class="item"><i class="fa-solid fa-align-left"></i></button>
+                <button class="item"><i class="fa-solid fa-align-center"></i></button>
+                <button class="item"><i class="fa-solid fa-align-right"></i></button>
                 <button class="impact-item item">impact</button>
                 <button class="item" onclick="onSaveMeme()">S</button>
-                <input class="item" oninput="onSetColor(this.value)" type="color">
+                <input type="color" name="color" class=" item" oninput="onSetColor(this.value)">
+
+                <!-- <input class="color-input item" oninput="onSetColor(this.value)" type="color" name="color"> -->
+
+
 
             </div>
-            <!-- <label class="custom-file-upload"> -->
-            <!-- Upload Img -->
-            <!-- <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" /> -->
-            <!-- </label> -->
             <div class="share-meme">
                 <a class="share-btn" onclick="onUploadImg()">Share</a>
                 <a class="download-btn" href="#" onclick="downloadCanvas(this)" download="my-img">Download</a>
