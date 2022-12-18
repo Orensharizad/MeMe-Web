@@ -12,7 +12,6 @@ function init() {
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
     renderGallery()
-    // resizeCanvas()
     addListeners()
     window.addEventListener('resize', () => {
         resizeCanvas()
@@ -42,11 +41,11 @@ function renderMemeImg() {
     let img = new Image()
     img.src = imgURL
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    renderLine()
+    renderLines()
 
 }
 
-function renderLine() {
+function renderLines() {
     const meme = getMeme()
     const lines = meme.lines
     lines.forEach((line, idx) => {
@@ -61,7 +60,7 @@ function renderLine() {
         gCtx.strokeText(line.txt, line.x, line.y)
 
         if (download === true) gCtx.strokeRect(0, 0, 0, 0);
-        else if (idx === meme.selectedLineIdx) {
+        if (idx === meme.selectedLineIdx) {
             gCtx.strokeRect(line.x - 225, line.y - 40, 450, 80);
         }
 
@@ -99,8 +98,8 @@ function onDown(ev) {
     const pos = getEvPos(ev)
     if (!isLineClicked(pos)) return
     setLineDrag(true)
-    setLineFoucs(true)
-    // gStartPos = pos
+    renderMeme()
+
     document.body.style.cursor = 'grabbing'
 }
 function onMove(ev) {
@@ -114,7 +113,7 @@ function onMove(ev) {
 }
 function onUp() {
     setLineDrag(false)
-    setLineFoucs(false)
+    // setLineFoucs(false)
     document.body.style.cursor = 'default'
 
 }
@@ -179,6 +178,7 @@ function renderImg(img) {
 function onClearText() {
     clearText()
     renderMeme()
+    flashMsg('Line Deleted .')
 }
 function onAddLine() {
     addLine()
@@ -187,6 +187,8 @@ function onAddLine() {
 function onSaveMeme() {
     const memeURL = gElCanvas.toDataURL()
     saveMeme(memeURL)
+    flashMsg('Meme Saved at Memes .')
+
 }
 function toggleMenu() {
     document.body.classList.toggle('menu-open')
@@ -205,4 +207,34 @@ function onSetImpact(val) {
 function onSetEmojy(val) {
     setEmojy(val)
     renderMeme()
+}
+// function onImgInput(ev) {
+//     loadImageFromInput(ev, imgInput)
+//     renderGallery()
+// }
+
+// // CallBack func will run on success load of the img
+// function loadImageFromInput(ev, onImageReady) {
+//     const reader = new FileReader()
+//     // After we read the file
+//     reader.onload = (event) => {
+//         let img = new Image() // Create a new html img element
+//         img.src = event.target.result // Set the img src to the img file we read
+//         // Run the callBack func, To render the img on the canvas
+//         img.onload = () => onImageReady(img)
+//     }
+
+//     reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
+
+// }
+
+function flashMsg(msg) {
+    const el = document.querySelector('.user-msg')
+    el.innerText = msg
+    el.classList.add('open')
+
+    setTimeout(() => {
+        el.classList.remove('open')
+
+    }, 4000);
 }

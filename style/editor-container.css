@@ -31,7 +31,7 @@
     cursor: pointer;
     border-radius: 0.4em;
     font-weight: bold;
-    padding: 0.4em;
+    padding: 0.3em;
     border: none;
     color: white;
     height: 2em;
@@ -70,13 +70,35 @@
 .text-editor-btns button {
     background-color: #fff;
     cursor: pointer;
-    padding: 0.3em;
+    padding: 0.5em;
     font-size: 1em;
     border-radius: 10px;
 }
 
 .text-editor-btns button:hover {
     background-color: gray;
+}
+
+input[type="color"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.label-color {
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 0.5em;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 2px solid black;
+
+}
+
+.label-color:hover {
+    background-color: gray;
+
 }
 
 .impact-item {
@@ -118,7 +140,8 @@
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
-    width: 35%;
+    /* width: 35%; */
+    font-size: 1em;
 
 }
 
@@ -128,16 +151,50 @@
     border: 1px solid black;
     border-radius: 1em;
     padding: 10px;
-    background-color: #19a59f;
+    background-color: #1e7cd3;
     cursor: pointer;
+    width: 160px;
+    text-align: center;
 }
 
 .share-meme a:hover {
     background-color: #22252d;
 }
 
+.download-btn {
+    width: 160px;
+    padding: 10px;
+    margin-left: 16px;
+    background-color: #8f44bb;
+    color: #fff;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border-radius: 1em;
+    border: 1px solid black;
+    font-size: 1em;
+}
+
+.download-btn:hover {
+    background-color: #22252d;
+
+}
 
 
 .hidden {
     display: none;
+}
+
+.user-msg {
+    position: fixed;
+    bottom: -100px;
+    right: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    color: rgb(0, 0, 0);
+    font-size: 1.5em;
+    border-radius: 1em;
+}
+
+.user-msg.open {
+    bottom: 10px;
+    transition: bottom .5s;
 }

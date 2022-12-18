@@ -58,6 +58,8 @@ function onMemeSelect(memeId) {
 function onRemoveMeme(imgId) {
     removeMeme(imgId)
     onRenderSavedMeme()
+    flashMsg('Saved Meme Removed .')
+
 }
 function onMoveGalleryPage() {
     document.querySelector('.gallery-container').classList.remove('hidden')
@@ -67,6 +69,7 @@ function onMoveGalleryPage() {
 
 function onSetFilterBy(filterBy) {
     const filter = filterBy.toLowerCase()
+    document.querySelector('input[name="search"]').value = filterBy
     setFilterBy(filter)
     renderGallery()
 }

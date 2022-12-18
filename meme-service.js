@@ -1,5 +1,4 @@
 'use strict'
-let gIdx = 0
 let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 const STORAGE_KEY = 'memeDB'
 const gFilterBy = { search: '' }
@@ -36,7 +35,7 @@ let gMeme = {
             size: 60,
             align: 'center',
             color: 'white',
-            isFocus: true,
+            isFocus: false,
             isDrag: false,
             x: 225,
             y: 50
@@ -62,8 +61,9 @@ function getUserSavedMeme() {
 function getImgs() {
     const imgs = gImgs
     if (!gFilterBy.search) return imgs
-    let filteredImgs = gImgs.filter((img) => img.keywords.includes(gFilterBy.search))
+    let filteredImgs = gImgs.filter((img) => img.keywords.find(kw => kw.includes(gFilterBy.search)))
     return filteredImgs
+
 }
 function getMeme() {
     return gMeme
@@ -72,6 +72,7 @@ function setLineTxt(val) {
     if (!val) return
     let selectedLine = gMeme.selectedLineIdx
     gMeme.lines[selectedLine].txt = val
+
 }
 function setImgId(imgId) {
     gMeme.selectedImgId = imgId
@@ -94,10 +95,16 @@ function switchLine() {
 
 }
 function isLineClicked(clickedPos) {
-    const lineIdx = gMeme.selectedLineIdx
-    const line = gMeme.lines[lineIdx]
-    const distance = Math.sqrt((line.x - clickedPos.x) ** 2 + (line.y - clickedPos.y) ** 2)
-    return distance <= line.size
+    const memeLines = gMeme.lines
+    const isLineClicked = memeLines.map((line, idx) => {
+        const distance = Math.sqrt((line.x - clickedPos.x) ** 2 + (line.y - clickedPos.y) ** 2)
+        if (distance <= line.size) {
+            gMeme.selectedLineIdx = idx
+            document.querySelector('input[name="txt"]').value = line.txt
+        }
+        return distance <= line.size
+    })
+    return isLineClicked
 }
 function moveLine(pos) {
     const lineIdx = gMeme.selectedLineIdx
@@ -115,6 +122,7 @@ function setLineFoucs(isFocus) {
     const lineIdx = gMeme.selectedLineIdx
     const line = gMeme.lines[lineIdx]
     line.isFocus = isFocus
+
 }
 function doUploadImg(imgDataUrl, onSuccess) {
     // Pack the image for delivery
@@ -211,5 +219,13 @@ function setEmojy(val) {
 
 
 }
+
+// function imgInput(img) {
+//     const imgSrc = img.src
+//     console.log(imgSrc)
+//     let userImg = { id: makeId(), url: imgSrc, keywords: ['funny'] }
+//     gImgs.unshift(userImg)
+//     console.log(gImgs)
+// }
 
 

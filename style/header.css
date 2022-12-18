@@ -2,7 +2,6 @@
     background: rgb(19, 159, 172);
     background: linear-gradient(90deg, rgba(19, 159, 172, 1) 34%, rgba(72, 210, 146, 1) 100%);
     width: 100%;
-    border-radius: 2em;
 }
 
 .container {
@@ -40,6 +39,10 @@
     align-items: center;
     font-size: 1em;
 
+}
+
+.main-nav a:hover {
+    color: black;
 }
 
 .clean-list {

@@ -15,7 +15,7 @@
     <!-- header -->
     <header class="main-header full">
         <div class="container">
-            <div class="logo">logo</div>
+            <div class="logo">memegen.</div>
             <nav class="main-nav ">
                 <ul class="clean-list">
                     <li onclick="onMoveGalleryPage()"><a class="active" href="index.html">Gallery</a></li>
@@ -30,7 +30,15 @@
     <section class="gallery-container">
 
         <div class="filter-container">
-            <input onkeyup="onSetFilterBy(this.value)" class="search" placeholder="Search.." type="text">
+            <input list="search-input" onkeyup="onSetFilterBy(this.value)" class="search" placeholder="Search.."
+                type="text" name="search">
+            <datalist id="search-input">
+                <option value="Funny">
+                <option value="Black">
+                <option value="Baby">
+                <option value="Government">
+                <option value="Animal">
+            </datalist>
             <div class="words">
                 <p onclick="onSetFilterBy('Funny')">Funny</p>
                 <p onclick="onSetFilterBy('Black')">Black</p>
@@ -38,10 +46,10 @@
                 <p onclick="onSetFilterBy('Government')">Government</p>
             </div>
             <button onclick="onRenderRandomMeme()" class="btn-more">imFlexible</button>
+
         </div>
 
         <div class="grid-container">
-
 
         </div>
 
@@ -62,7 +70,8 @@
         </div>
         <!-- options -->
         <div class="options-container">
-            <input class="text-input" onkeyup="onSetLineTxt(this.value)" type="text" name="text">
+            <input class="text-input" onkeyup="onSetLineTxt(this.value)" type="text" name="txt"
+                placeholder="Enter Text ...">
 
             <div class="editor-btns">
                 <button class="btn-switch" onclick="onSwitchLine()">⇅</button>
@@ -78,16 +87,16 @@
                 <button onclick="onSetTextAlign('center')" class="item"><i
                         class="fa-solid fa-align-center"></i></button>
                 <button onclick="onSetTextAlign('left')" class="item"><i class="fa-solid fa-align-right"></i></button>
-                <!-- <button class="impact-item item"></button> -->
                 <select class="impact-item item" onchange="onSetImpact(this.value)">
                     <option value="impact">Impact</option>
                     <option value="arial">Arial</option>
                     <option value="monospace">monospace</option>
                 </select>
                 <button class="item" onclick="onSaveMeme()">Save</button>
-                <input type="color" name="color" class=" item" oninput="onSetColor(this.value)">
+                <label type="button" class="label-color item " for="input-color"><i
+                        class="fa-solid fa-palette"></i></label>
+                <input id="input-color" type="color" name="color" oninput="onSetColor(this.value)">
 
-                <!-- <input class="color-input item" oninput="onSetColor(this.value)" type="color" name="color"> -->
 
 
 
@@ -105,12 +114,14 @@
 
             <div class="share-meme">
                 <a class="share-btn" onclick="onUploadImg()">Share</a>
-                <a class="download-btn" href="#" onclick="downloadCanvas(this)" download="my-img">Download</a>
+                <button class="download-btn" href="#" onclick="downloadCanvas(this)" download="my-img">Download</button>
             </div>
 
         </div>
         </div>
     </section>
+    <div class="user-msg"></div>
+
 
 
 

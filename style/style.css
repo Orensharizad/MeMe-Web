@@ -64,7 +64,7 @@
     }
 
     canvas {
-        width: 90vw;
+        width: 95vw;
         height: 40vh;
 
     }
@@ -83,7 +83,7 @@
     }
 
     .options-container {
-        width: 90vw;
+        width: 95vw;
         height: 50vh;
         margin: 20px auto;
     }
